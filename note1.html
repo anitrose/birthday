@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note 1 for Ponnu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Handlee&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #a498f4 0%, #ffb6c1 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Handlee', cursive;
+        }
+        .note-card {
+            background-color: #fffaf0;
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+            animation: fadeIn 1s ease-out forwards;
+        }
+        .note-heading {
+            font-family: 'Pacifico', cursive;
+            color: #e84393;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+        .note-message {
+            font-size: 1.5em;
+            color: #4a4a4a;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .next-button, .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin: 0 10px;
+            color: white;
+        }
+        .next-button { 
+            background-color: #007bff; 
+        }
+        .next-button:hover { 
+            background-color: #0056b3; 
+        }
+        .back-button { 
+            background-color: #88d8b0; 
+        }
+        .back-button:hover { 
+            background-color: #6aa885; 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="note-card">
+        <div class="note-heading">A Little Birthday Thought...</div>
+        <p class="note-message">
+            🎂💌 Happy Birthday to my favorite troublemaker! 💌🎂
+            You’re not just my cousin — you’re the sister the universe sneakily added to my life (probably to make sure I never have peace 😜).
+             Even though we live far apart, you still manage to drive me crazy from miles away — now that’s real talent! 😂💫
+             From our late-night ice cream thefts 🍦 to our chaotic cookery shows 🍳 (where we proudly destroyed mummy’s ₹xxxx-worth pan — may it rest in pieces 😭), we’ve written a whole comedy series together. Those sleepless nights, endless gossips, random pullimittay cravings, and stalking sessions — you and I could honestly start a reality show at this point! 😂
+
+Our mandatory day-outs (even when we have no plan) are the highlight of every vacation. And yeah, you keep saikkaling me — the so-called “emotionally not active” one 🤭 — but the truth is, you’ve always been the heartbeat behind my calm. You make every moment brighter, crazier, and full of life. 💕
+
+Now, about your boards… as Daddy and Mummy said, it’s your turning point — but just kidding 🤣! Do as much as you can, and don’t stress about the outcome. You’re already making everyone proud just by being you — my little chaos wrapped in sunshine. 🌸
+
+Here’s to more late-night ice cream hunts, kitchen disasters, and unplanned adventures that turn into the best memories. Love you to bits, my forever favorite partner-in-mischief! 💫💖
+        </p>
+        <div class="navigation">
+            <a href="index.html" class="back-button">&larr; Back to Card</a>
+            <a href="note2.html" class="next-button">One More Note! &rarr;</a>
+        </div>
+    </div>
+</body>
+</html>

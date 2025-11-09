@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decorate Ponnu's Cake</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Handlee&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #4b3832 0%, #a498f4 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Handlee', cursive;
+            color: #f7f7f7;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            width: 500px;
+            animation: fadeIn 1s ease-out forwards;
+            color: #333;
+        }
+        
+        .heading {
+            font-family: 'Pacifico', cursive;
+            color: #4b3832;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .controls { margin-bottom: 30px; }
+        .control-button {
+            padding: 10px 20px; margin: 0 10px; border: none; border-radius: 25px;
+            font-size: 1.1em; cursor: pointer; transition: transform 0.2s, background-color 0.2s;
+            font-weight: bold;
+        }
+        .control-button:hover { transform: translateY(-2px); }
+        #decorate-btn { background-color: #ffcc5c; color: #333; }
+        #candle-btn { background-color: #88d8b0; color: #333; }
+
+        /* --- Cake Styling: Tiers and Drips --- */
+        .cake-area {
+            position: relative;
+            width: 320px; 
+            height: 350px; 
+            margin: 0 auto 30px;
+        }
+
+        .cake-base {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%; 
+            height: 30px; 
+            background-color: #ddd;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .tier {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #795548; 
+            box-shadow: 0 5px 0 rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 10px 10px;
+        }
+
+        #tier-3 { width: 300px; height: 100px; bottom: 30px; }
+        #tier-2 { width: 220px; height: 80px; bottom: 130px; }
+        #tier-1 { width: 140px; height: 60px; bottom: 210px; }
+
+        .drip-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background-color: #3e2723;
+            border-radius: 10px 10px 0 0;
+            z-index: 2;
+        }
+        
+        .drip-layer::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: radial-gradient(circle at 50% 10%, #3e2723 50%, transparent 50%);
+            background-size: 20px 20px;
+        }
+
+        .drip-layer::before {
+            content: '🍫 🌰 🍫 🌰 🍫';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            color: #a1887f;
+            letter-spacing: 2px;
+            z-index: 3;
+        }
+        
+        /* --- Decorations & Candle --- */
+        .decoration {
+            position: absolute;
+            font-size: 2.0em;
+            animation: popIn 0.5s ease-out forwards;
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        .candle-style {
+            position: absolute;
+            bottom: 255px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 30px;
+            background-color: #f0e68c; 
+            border-radius: 2px;
+            z-index: 10;
+            animation: popIn 0.5s ease-out forwards;
+        }
+
+        .candle-style::after { 
+            content: ''; position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            width: 10px; height: 12px;
+            background: radial-gradient(circle at 50% 0%, #ffc107 0%, #ff8c00 70%, transparent 100%);
+            border-radius: 50% 50% 30% 30%; animation: flicker 0.2s infinite alternate; box-shadow: 0 0 6px #ffc107;
+        }
+
+        /* --- Navigation --- */
+        .navigation { margin-top: 30px; }
+        .next-button {
+            display: inline-block; padding: 10px 20px; background-color: #007bff; color: white;
+            text-decoration: none; border-radius: 25px; font-size: 1.2em; font-weight: bold;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .next-button:hover { background-color: #0056b3; transform: translateY(-2px); }
+
+        /* --- Keyframe Animations --- */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes flicker { 0%, 100% { opacity: 1; transform: translateX(-50%) scaleY(1); } 50% { opacity: 0.8; transform: translateX(-50%) scaleY(0.9); } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="heading">Decorate Ponnu's Birthday Cake!</h1>
+        
+        <div class="controls">
+            <button id="decorate-btn" class="control-button">✨ Decorate</button>
+            <button id="candle-btn" class="control-button">🕯️ Add Candle</button>
+        </div>
+
+        <div class="cake-area">
+            <div id="cake-stand" class="cake-base"></div>
+
+            <div id="tier-3" class="tier">
+                <div class="drip-layer"></div>
+            </div>
+
+            <div id="tier-2" class="tier">
+                <div class="drip-layer"></div>
+            </div>
+
+            <div id="tier-1" class="tier">
+                <div class="drip-layer"></div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="note1.html" class="next-button">View Note 1 &rarr;</a>
+        </div>
+    </div>
+
+    <script>
+        const cakeArea = document.querySelector('.cake-area');
+        const decorateBtn = document.getElementById('decorate-btn');
+        const candleBtn = document.getElementById('candle-btn');
+        
+        const decorations = ['💖', '⭐', '🍓', '🍒', '🎉', '🍬'];
+        let candleAdded = false;
+
+        // Function to add a random decoration
+        decorateBtn.addEventListener('click', () => {
+            const dec = decorations[Math.floor(Math.random() * decorations.length)];
+            const newDec = document.createElement('div');
+            newDec.className = 'decoration';
+            newDec.innerHTML = dec;
+            
+            // Adjusted position to be randomly on any of the three tiers (100px to 300px from bottom of cake area)
+            const topPos = Math.random() * 200 + 100; 
+            const leftPos = Math.random() * 260 + 20; 
+            
+            newDec.style.top = `${topPos}px`;
+            newDec.style.left = `${leftPos}px`;
+            
+            cakeArea.appendChild(newDec);
+        });
+
+        // Function to add the candle
+        candleBtn.addEventListener('click', () => {
+            if (!candleAdded) {
+                const candle = document.createElement('div');
+                candle.className = 'candle-style';
+                cakeArea.appendChild(candle);
+                candleAdded = true;
+                candleBtn.textContent = "🕯️ Candle Added!";
+                candleBtn.disabled = true;
+            }
+        });
+    </script>
+</body>
+</html>
